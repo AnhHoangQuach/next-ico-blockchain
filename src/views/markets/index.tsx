@@ -44,7 +44,7 @@ export default function MarketView() {
   const getListNft = React.useCallback(async () => {
     if (!web3Provider || !wallet) return
     const nftContract = new NftContract(web3Provider)
-    const nfts = await nftContract.getListNFT(wallet.address)
+    const nfts = await nftContract.getListNFT('0x9846b373C73eA23b0Ca9eF0679f6A12E94734382')
     setNfts(nfts.filter((p) => p.name))
     const marketContract = new MarketContract(web3Provider)
     const ids = await marketContract.getNFTListedOnMarketplace()
@@ -173,7 +173,7 @@ export default function MarketView() {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <SimpleGrid w="full" columns={4} spacing={10}>
+            <SimpleGrid w="full" columns={4} spacing={8}>
               {nfts.map((nft, index) => (
                 <Nft
                   item={nft}
